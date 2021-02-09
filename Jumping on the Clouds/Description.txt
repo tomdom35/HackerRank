@@ -1,16 +1,12 @@
-https://www.hackerrank.com/challenges/jumping-on-the-clouds-revisited/problem
+https://www.hackerrank.com/challenges/jumping-on-the-clouds/problem
 
-A child is playing a cloud hopping game. In this game, there are sequentially numbered clouds that can be thunderheads or cumulus clouds. The character must jump from cloud to cloud until it reaches the start again.
+There is a new mobile game that starts with consecutively numbered clouds. Some of the clouds are thunderheads and others are cumulus. The player can jump on any cumulus cloud having a number that is equal to the number of the current cloud plus  or . The player must avoid the thunderheads. Determine the minimum number of jumps it will take to jump from the starting postion to the last cloud. It is always possible to win the game.
 
-There is an array of clouds,  and an energy level . The character starts from  and uses  unit of energy to make a jump of size  to cloud . If it lands on a thundercloud, , its energy () decreases by  additional units. The game ends when the character lands back on cloud .
+For each game, you will get an array of clouds numbered  if they are safe or  if they must be avoided.
 
-Given the values of , , and the configuration of the clouds as an array , determine the final value of  after the game ends.
+Example
 
-Example. 
-
-The indices of the path are . The energy level reduces by  for each jump to . The character landed on one thunderhead at an additional cost of  energy units. The final energy level is .
-
-Note: Recall that  refers to the modulo operation. In this case, it serves to make the route circular. If the character is at  and jumps , it will arrive at .
+Index the array from . The number on each cloud is its index in the list so the player must avoid the clouds at indices  and . They could follow these two paths:  or . The first path takes  jumps while the second takes . Return .
 
 Function Description
 
@@ -18,38 +14,40 @@ Complete the jumpingOnClouds function in the editor below.
 
 jumpingOnClouds has the following parameter(s):
 
-int c[n]: the cloud types along the path
-int k: the length of one jump
+int c[n]: an array of binary integers
 Returns
 
-int: the energy level remaining.
+int: the minimum number of jumps required
 Input Format
 
-The first line contains two space-separated integers,  and , the number of clouds and the jump distance.
-The second line contains  space-separated integers  where . Each cloud is described as follows:
+The first line contains an integer , the total number of clouds. The second line contains  space-separated binary integers describing clouds  where .
 
-If , then cloud  is a cumulus cloud.
-If , then cloud  is a thunderhead.
 Constraints
 
-Sample Input
+Output Format
 
-STDIN             Function
------             --------
-8 2               n = 8, k = 2
-0 0 1 0 0 1 1 0   c = [0, 0, 1, 0, 0, 1, 1, 0]
-Sample Output
+Print the minimum number of jumps needed to win the game.
 
-92
-Explanation
+Sample Input 0
 
-In the diagram below, red clouds are thunderheads and purple clouds are cumulus clouds:
+7
+0 0 1 0 0 1 0
+Sample Output 0
 
-game board
+4
+Explanation 0:
+The player must avoid  and . The game can be won with a minimum of  jumps:
 
-Observe that our thunderheads are the clouds numbered , , and . The character makes the following sequence of moves:
+jump(2).png
 
-Move: , Energy: .
-Move: , Energy: .
-Move: , Energy: .
-Move: , Energy: .
+Sample Input 1
+
+6
+0 0 0 0 1 0
+Sample Output 1
+
+3
+Explanation 1:
+The only thundercloud to avoid is . The game can be won in  jumps:
+
+jump(5).png
